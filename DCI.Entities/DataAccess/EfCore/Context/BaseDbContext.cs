@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : FSDH.Core
-// Author           : SBSC
-// Created          : 02-15-2021
-//
-// Last Modified By : SBSC
-// Last Modified On : 02-15-2021
-// ***********************************************************************
-// <copyright file="BaseDbContext.cs" company="SBSC">
-//     Copyright (c) . All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -19,27 +6,21 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using DCI.Core.Utils;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
-using FSDH.Core.Exceptions;
-using FSDH.Core.Timing;
-using FSDH.Core.Utils;
-using FSDH.Entities;
-using FSDH.Entities.Auditing;
-using FSDH.Entities.Common;
-using FSDH.Entities.Extensions;
-using ReflectionHelper = FSDH.Core.Reflection.ReflectionHelper;
+using ReflectionHelper = DCI.Core.Reflection.ReflectionHelper;
 
-namespace FSDH.Core.DataAccess.EfCore.Context
+namespace DCI.Entities.DataAccess.EfCore.Context
 {
     /// <summary>
     /// Base class for all DbContext classes in the application.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public abstract class
-        BaseDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
+        BaseDbContext : IdentityDbContext<DCIUser, DCIRole, Guid, DCIUserClaim, DCIUserRole, DCIUserLogin, DCIRoleClaim, DCIUserToken>
     {
         /// <summary>
         /// The configure global filters method information
@@ -390,4 +371,13 @@ namespace FSDH.Core.DataAccess.EfCore.Context
             }
         }
     }
+
+    //public interface ISoftDelete
+    //{
+    //    /// <summary>
+    //    /// Gets or sets a value indicating whether this instance is deleted.
+    //    /// </summary>
+    //    /// <value><c>true</c> if this instance is deleted; otherwise, <c>false</c>.</value>
+    //    bool IsDeleted { get; set; }
+    //}
 }
