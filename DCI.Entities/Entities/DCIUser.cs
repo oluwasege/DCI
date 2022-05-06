@@ -40,7 +40,8 @@ namespace DCI.Entities.Entities
         public bool Activated { get; set; }
         public bool IsDeleted { get; set; }
         public UserTypes UserType { get; set; }
-        public Guid? UserTypeId { get; set; }
-        public bool IsFirstTimeLogin { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsCSO { get; set; }
+        public bool IsSupervisor { get; set; }
     }
 }
