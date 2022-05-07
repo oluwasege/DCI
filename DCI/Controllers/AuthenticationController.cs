@@ -1,8 +1,8 @@
 ﻿using DCI.Core.Enums;
-using DCI.Core.Utils;
-using DCI.Core.ViewModels;
+using DCI.Entities.ViewModels;
 using DCI.Entities.ViewModels.LoginVMs;
 using DCI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,11 +11,12 @@ namespace DCI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AunthenticationController : BaseController
+    [AllowAnonymous]
+    public class AuthenticationController : BaseController
     {
         private readonly IAuthenticationService _authService;
 
-        public AunthenticationController(IAuthenticationService authService)
+        public AuthenticationController(IAuthenticationService authService)
         {
             _authService = authService;
         }
@@ -63,5 +64,6 @@ namespace DCI.Controllers
                 return HandleError(ex);
             }
         }
+
     }
 }

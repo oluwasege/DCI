@@ -23,6 +23,6 @@ namespace DCI.Entities.ViewModels.UserVMs
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         [Required]
-        public string RoleId { get; set; }
+        public string Role { get; set; }
     }
 }

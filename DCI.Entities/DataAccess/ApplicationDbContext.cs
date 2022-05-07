@@ -130,6 +130,12 @@ namespace DCI.Entities.DataAccess
                 RoleId = CSORoleId,
                 UserId = CSODCIUserId,
             });
+
+            builder.Entity<Case>().HasData(
+                new Case
+                {
+                     
+                });
         }
     }
 }

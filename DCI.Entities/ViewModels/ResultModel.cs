@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace DCI.Core.ViewModels
+namespace DCI.Entities.ViewModels
 {
     /// <summary>
     /// Class ResultModel.

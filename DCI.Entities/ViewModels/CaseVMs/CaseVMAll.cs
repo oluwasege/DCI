@@ -1,41 +1,37 @@
 ﻿using DCI.Core;
 using DCI.Core.Enums;
 using DCI.Entities.Entities;
-using DCI.Entities.ViewModels.UserVMs;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DCI.Entities.ViewModels.CaseVMs
 {
-    public class CaseVM
+    public class CaseVMAll
     {
+        public string Id { get; set; }
         public DateTime CreatedOnUtc { get; set; }
-        public string CSOUserId { get; set; }
-        public List<ViolenceType> ViolenceType { get; set; } 
+        public List<ViolenceType> ViolenceType { get; set; }
         public string State { get; set; }
         public string LGA { get; set; }
         public string Statement { get; set; }
         public bool IsFatal { get; set; }
         public bool IsPerpetratorArrested { get; set; }
         public StateOfCase StateOfCase { get; set; }
-        public UserVM CSOUser { get; set; }
         public ApprovalStatus ApprovalStatus { get; set; }
-        public Approval ApprovalAction { get; set; }
         public DateTime LastDateModified { get; set; }
         public string LastModifiedUserId { get; set; }
 
-        public static implicit operator CaseVM(Case model)
+        public static implicit operator CaseVMAll(Case model)
         {
             return model == null
                 ? null
-                : new CaseVM()
+                : new CaseVMAll()
                 {
+                    Id = model.Id,
                     State = model.State,
-                    ApprovalAction = model.ApprovalAction,
                     ApprovalStatus = model.ApprovalStatus,
                     CreatedOnUtc = model.CreatedOnUtc,
-                    CSOUser = model.CSOUser,
-                    CSOUserId = model.CSOUserId,
                     IsFatal = model.IsFatal,
                     IsPerpetratorArrested = model.IsPerpetratorArrested,
                     ViolenceType = model.ViolenceType,
@@ -48,5 +44,4 @@ namespace DCI.Entities.ViewModels.CaseVMs
                 };
         }
     }
-
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AzureRays.Shared.ViewModels
+namespace DCI.Entities.ViewModels
 {
     public class BaseSearchViewModel
     {

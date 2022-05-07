@@ -1,5 +1,4 @@
 ﻿using DCI.Core.Utils;
-using DCI.Core.ViewModels;
 using DCI.Entities;
 using DCI.Entities.DataAccess;
 using DCI.Entities.Entities;
@@ -19,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using DCI.Core.Enums;
 using DCI.Entities.ViewModels.LoginVMs;
 using DCI.Entities.ViewModels.UserVMs;
+using DCI.Entities.ViewModels;
 
 namespace DCI.Services
 {
@@ -43,7 +43,7 @@ namespace DCI.Services
            var resultModel = new ResultModel<LoginResponseVM>();
             try
             {
-                var user = GetUser(model.EmailAddress).Result;
+                var user = await GetUser(model.EmailAddress);
                 if(user==null)
                 {
                     resultModel.AddError(ErrorConstants.IncorrectUserOrPass);
@@ -174,7 +174,7 @@ namespace DCI.Services
             var result = new ResultModel<bool>();
             try
             {
-                var user =GetUser(emailAddress).Result;
+                var user =await GetUser(emailAddress);
 
                 if (user == null)
                 {
@@ -235,7 +235,7 @@ namespace DCI.Services
 
             return (new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken), jwtSecurityToken.ValidTo);
         }
-        public async Task<ResultModel<bool>> InviteUser(RegisterUserVM model,DateTime currentDate)
+        public async Task<ResultModel<bool>> InviteUser(RegisterUserVM model)
         {
             var result = new ResultModel<bool>();
             try
@@ -250,7 +250,7 @@ namespace DCI.Services
                     return result;
                 }
 
-                var role = await _roleManager.FindByIdAsync(model.RoleId);
+                var role = await _roleManager.FindByIdAsync(model.Role);
 
                 if (role == null)
                 {
@@ -303,8 +303,20 @@ namespace DCI.Services
                 };
 
                 await _userManager.AddToRoleAsync(user, role.Name);
+                var recipients = new List<string>
+                    {
+                        user.Email,"akinpelu53@gmail.com"
+                    };
+                string body = $"<h3>This is to notify you that your account has been created at DCI.<br> Email Address: {model.Email}<br>Password: {password}<br>Please change your password after login</h3>";
+                var status = await SendEmail(recipients, "Account Invitation", body);
+                if (!status)
+                {
+                    result.AddError("UNABLE TO SEND MAIL");
+                    return result;
+                }
                 result.Data = true;
                 result.Message = "User Created Successfully";
+
                 return result;
             }
             catch (Exception)
@@ -315,13 +327,104 @@ namespace DCI.Services
             
 
         }
+        public async Task<ResultModel<PaginatedList<UserVM>>>GetAllUsers(BaseSearchViewModel model)
+        {
+            var resultModel=new ResultModel<PaginatedList<UserVM>>();
+            var query = GetAllUsers();
+            if(query == null)
+            {
+                resultModel.AddError("No existing user");
+                return resultModel;
+            }
+            if (model != null)
+                EntityFilter(query, model);
+            var usersPaged = query.ToPaginatedList((int)model.PageIndex, (int)model.PageSize);
+            var usersVms = usersPaged.Select(x => (UserVM)x).ToList();
+            var data = new PaginatedList<UserVM>(usersVms, (int)model.PageIndex, (int)model.PageSize, usersPaged.TotalCount);
+            resultModel.Data = data;
+            resultModel.Message = $"Found {usersPaged.Count} cases";
+            return resultModel;
+        }
+        public async Task<ResultModel<UserVM>> GetUserAsync(string email)
+        {
+            var resultModel=new ResultModel<UserVM>();
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                resultModel.AddError("User not found");
+                return resultModel;
+            };
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            resultModel.Data = user;
+            resultModel.Data.Roles = userRoles;
+            resultModel.Message = "User retrieved";
+            return resultModel;
+
+        }
+        public async Task<ResultModel<string>> AssignUserToRole(string email, string role, string CurrentUserID)
+        {
+            var result = new ResultModel<string>();
+            try
+            {
+                var user = await GetUser(email);
+                if (user == null)
+                {
+                    result.AddError("User does not exist");
+                    return result;
+                };
+
+                if (await _roleManager.RoleExistsAsync(role))
+                {
+                    if (!await _userManager.IsInRoleAsync(user, role))
+                    {
+                        await _userManager.AddToRoleAsync(user, role);
+                        result.Message = $"User with email address {email} added to role {role}";
+                        //var adminUser = await GetUserById(CurrentUserID);
+
+                        //await _emailSender.SendEmailAsync(email, "FSDH ROLE", $"You have been added to an {role} role");
+                       // await _emailService.SendMail(email, "FSDH ROLE", $"You have been added to an {role} role");
+                        return result;
+                    }
+                    result.AddError("User already has this role");
+                    return result;
+                }
+
+                result.AddError("Role not found");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.AddError("An error occured!");
+                return result;
+            }
+        }
+        public async Task<ResultModel<List<RoleVm>>> GetAllRoles()
+        {
+            var result = new ResultModel<List<RoleVm>>();
+            try
+            {
+                var roles =  _roleManager.Roles.Select(r => new RoleVm
+                {
+                    Role = r.Name
+                }).ToList();
+
+                result.Data = roles;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex.Message);
+                return result;
+            }
+        }
         public async Task<ResultModel<bool>> ResetPassword(ResetPasswordVM model,string userId,DateTime currentDate)
         {
             var resultModel = new ResultModel<bool>();
 
             try
             {
-                var user = GetUserById(userId).Result;
+                var user = await GetUserById(userId);
                 if (user == null)
                 {
                     resultModel.AddError(ErrorConstants.IncorrectUserOrPass);
@@ -388,10 +491,45 @@ namespace DCI.Services
 
             return randomNum + randomspecialChar + randomsmall + randomcapital;
         }
+        private IQueryable<DCIUser>GetAllUsers()=> _context.Users.AsQueryable();
         private async Task<bool> SendEmail(List<string> recipients, string subject, string body)
         {
             return await _emailService.SendMail(recipients, subject, body);
         }
-
+        private IQueryable<DCIUser> EntityFilter(IQueryable<DCIUser> query, BaseSearchViewModel model)
+        {
+            if (!string.IsNullOrEmpty(model.Keyword) && !string.IsNullOrEmpty(model.Filter))
+            {
+                var keyword = model.Keyword.ToLower().Trim();
+                switch (model.Filter)
+                {
+                    case "email":
+                        {
+                            query = query.Where(x => x.Email.ToLower().Contains(keyword)).OrderByDescending(x => x.CreatedOnUtc);
+                            break;
+                        }
+                    case "firstname":
+                        {
+                            query = query.Where(x => x.FirstName.ToLower().Contains(keyword)).OrderByDescending(x => x.CreatedOnUtc);
+                            break;
+                        }
+                    case "lastname":
+                        {
+                            query = query.Where(x => x.LastName.ToLower().Contains(keyword)).OrderByDescending(x => x.CreatedOnUtc);
+                            break;
+                        }
+                    case "phonenumber":
+                        {
+                            query = query.Where(x => x.PhoneNumber.ToLower().Contains(keyword)).OrderByDescending(x => x.CreatedOnUtc);
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            return query.OrderByDescending(x => x.Id);
+        }
     }
 }

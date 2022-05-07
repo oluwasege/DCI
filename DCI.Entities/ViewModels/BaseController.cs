@@ -7,9 +7,9 @@ using log4net;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using DCI.Core.Enums;
-using DCI.Core.ViewModels;
+using DCI.Core.Utils;
 
-namespace DCI.Core.Utils
+namespace DCI.Entities.ViewModels
 {
     /// <summary>
     /// Class BaseController.

@@ -1,8 +1,6 @@
 ﻿using DCI.Core.Enums;
-using DCI.Core.Utils;
-using DCI.Core.ViewModels;
+using DCI.Entities.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

@@ -247,6 +247,7 @@ namespace DCI.Services
             }
             catch (Exception ex)
             {
+
                 //_logger.LogError(ex.StackTrace, ex, "An error occured while sending message");
                 return false;
             }
