@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DCI.Core.ViewModels.LoginVMs
+namespace DCI.Entities.ViewModels.LoginVMs
 {
     public class LoginResponseVM
     {

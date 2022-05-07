@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DCI.Core.ViewModels.MailVMs
+namespace DCI.Entities.ViewModels.MailVMs
 {
     public class MailRequest
     {

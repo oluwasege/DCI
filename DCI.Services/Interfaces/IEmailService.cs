@@ -1,7 +1,5 @@
-﻿using DCI.Core.ViewModels.MailVMs;
-using System;
+﻿using DCI.Entities.ViewModels.MailVMs;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DCI.Services.Interfaces

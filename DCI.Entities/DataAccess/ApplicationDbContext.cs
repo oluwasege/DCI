@@ -17,6 +17,8 @@ namespace DCI.Entities.DataAccess
 
         }
 
+        public DbSet<Case> Cases { get; set; }
+        public DbSet<Approval> Approvals { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

@@ -1,9 +1,8 @@
 ﻿using DCI.Core.Enums;
 using DCI.Core.Utils;
 using DCI.Core.ViewModels;
-using DCI.Core.ViewModels.LoginVMs;
+using DCI.Entities.ViewModels.LoginVMs;
 using DCI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

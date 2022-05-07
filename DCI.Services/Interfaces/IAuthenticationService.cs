@@ -1,9 +1,6 @@
-﻿using DCI.Core.Utils;
-using DCI.Core.ViewModels;
-using DCI.Core.ViewModels.LoginVMs;
+﻿using DCI.Core.ViewModels;
+using DCI.Entities.ViewModels.LoginVMs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DCI.Services.Interfaces

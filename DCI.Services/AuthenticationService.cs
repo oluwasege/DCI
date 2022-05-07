@@ -1,6 +1,5 @@
 ﻿using DCI.Core.Utils;
 using DCI.Core.ViewModels;
-using DCI.Core.ViewModels.LoginVMs;
 using DCI.Entities;
 using DCI.Entities.DataAccess;
 using DCI.Entities.Entities;
@@ -17,8 +16,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
-using DCI.Core.ViewModels.UserVMs;
 using DCI.Core.Enums;
+using DCI.Entities.ViewModels.LoginVMs;
+using DCI.Entities.ViewModels.UserVMs;
 
 namespace DCI.Services
 {

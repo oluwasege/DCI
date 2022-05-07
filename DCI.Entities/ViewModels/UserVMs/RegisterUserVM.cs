@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DCI.Core.ViewModels.UserVMs
+namespace DCI.Entities.ViewModels.UserVMs
 {
     public class RegisterUserVM
     {

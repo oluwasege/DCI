@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using DCI.Core.Utils;
-using DCI.Core.ViewModels.MailVMs;
+using DCI.Entities.ViewModels.MailVMs;
 using DCI.Services.Interfaces;
 using Microsoft.Extensions.Options;
 using System;
