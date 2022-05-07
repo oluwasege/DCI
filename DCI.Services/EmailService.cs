@@ -11,32 +11,19 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using AutoMapper.Configuration;
-using AzureRays.Core.Configuration;
-using AzureRays.Core.Interfaces;
-using AzureRays.Core.Models;
-using AzureRays.Core.ViewModels.DTO.NotificationDTO;
-using AzureRays.Shared.Utils;
 using DCI.Core.Utils;
 using DCI.Core.ViewModels.MailVMs;
 using DCI.Services.Interfaces;
-using DinkToPdf.Contracts;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MimeKit;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using static AzureRays.Shared.AzureRaysConsts;
 
-namespace AzureRays.Core.Services
+namespace DCI.Services
 {
     /// <summary>
     /// Class EmailService.

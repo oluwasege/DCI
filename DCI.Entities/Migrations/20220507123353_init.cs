@@ -44,7 +44,6 @@ namespace DCI.Entities.Migrations
                     LastName = table.Column<string>(nullable: true),
                     ResetPasswordToken = table.Column<string>(nullable: true),
                     LastModifiedDate = table.Column<DateTime>(nullable: false),
-                    AvatarUrl = table.Column<string>(nullable: true),
                     MiddleName = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     Gender = table.Column<int>(nullable: false),
@@ -198,19 +197,19 @@ namespace DCI.Entities.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "354904c9-803a-4f98-866a-e240aaa1e353", "ADMIN", "ADMIN" },
-                    { "fe8d7501-6cb1-4d99-4c9f-08d9b6be7d9e", "3c516d05-d2c0-480c-b623-d58d397b87fb", "SUPERVISOR", "SUPERVISOR" },
-                    { "e82fe09a-2419-4b9b-8a2c-b5001e71c997", "762d8ddb-8dee-4711-b8e3-a0315567e301", "CSO", "CSO" }
+                    { "2c5e174e-3b0e-446f-86af-483d56fd7210", "21bcbbee-763a-484e-8766-bd786be12679", "ADMIN", "ADMIN" },
+                    { "fe8d7501-6cb1-4d99-4c9f-08d9b6be7d9e", "f44d575e-9012-41fd-8ef4-0eb80156257a", "SUPERVISOR", "SUPERVISOR" },
+                    { "e82fe09a-2419-4b9b-8a2c-b5001e71c997", "939338cd-e7db-46b6-b3aa-33df6f73bc74", "CSO", "CSO" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Activated", "AvatarUrl", "ConcurrencyStamp", "CreatedOnUtc", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "IsAdmin", "IsCSO", "IsDeleted", "IsSupervisor", "LastLoginDate", "LastModifiedDate", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "ModifiedOnUtc", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ResetPasswordToken", "SecurityStamp", "State", "TwoFactorEnabled", "UserName", "UserType" },
+                columns: new[] { "Id", "AccessFailedCount", "Activated", "ConcurrencyStamp", "CreatedOnUtc", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "Gender", "IsAdmin", "IsCSO", "IsDeleted", "IsSupervisor", "LastLoginDate", "LastModifiedDate", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "ModifiedOnUtc", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ResetPasswordToken", "SecurityStamp", "State", "TwoFactorEnabled", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { "b8633e2d-a33b-45e6-8329-1958b3252bbd", 0, false, null, "24cfe7f9-3c63-485c-a3af-d659fe931afe", new DateTime(2022, 5, 6, 13, 5, 58, 557, DateTimeKind.Utc).AddTicks(700), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin@dci.com", true, "Admin", 0, true, false, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", false, null, null, null, "Admin@dci.com", "Admin@dci.com", "AQAAAAEAACcQAAAAEGWbtlKLs/LZjoSOioZLzFQzO20Z65bLlUEUwVf006j4LCYrYhvpO1DeG4rWgoTJBQ==", null, false, null, "61382021-9c84-4f28-b1d6-b764c212acba", null, false, "Admin@dci.com", 2 },
-                    { "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e", 0, false, null, "5d269045-ff02-4fc2-8027-160dd0019798", new DateTime(2022, 5, 6, 13, 5, 58, 562, DateTimeKind.Utc).AddTicks(9314), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CSO@dci.com", true, "CSO", 0, false, true, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CSO", false, null, null, null, "CSO@dci.com", "CSO@dci.com", "AQAAAAEAACcQAAAAEE+ghulq6LiPJRx6W4ECQ/eZ3SlaCLruCMLGZzzw7yAyu/VBNU0H3eE+c2vy8N+aGw==", null, false, null, "da8eb9c0-2b14-4d6e-9aaa-f04ecfcf7840", null, false, "CSO@dci.com", 0 },
-                    { "5e31db4e-6e79-487e-4c9e-08d9b6be7d9e", 0, false, null, "3132d10a-d95f-47b7-99f7-2f1333d22316", new DateTime(2022, 5, 6, 13, 5, 58, 564, DateTimeKind.Utc).AddTicks(7784), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Supervisor@dci.com", true, "Supervisor", 0, false, false, false, true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Supervisor", false, null, null, null, "Supervisor@dci.com", "Supervisor@dci.com", "AQAAAAEAACcQAAAAEF2nuGjs8hRW+wqNGSEaKPq8+9EghbSkRF7QEs8Nxcqe0BzhtAFfW7Nsx1PsnrBL+A==", null, false, null, "dfc5bf7e-534d-4109-aa5f-287a31040db5", null, false, "Supervisor@dci.com", 1 }
+                    { "b8633e2d-a33b-45e6-8329-1958b3252bbd", 0, false, "af26df6e-f613-4dd6-a719-71a432a2bb45", new DateTime(2022, 5, 7, 12, 33, 52, 994, DateTimeKind.Utc).AddTicks(4321), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin@dci.com", true, "Admin", 0, true, false, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", false, null, null, null, "Admin@dci.com", "Admin@dci.com", "AQAAAAEAACcQAAAAEDat42uN9g+LBA0/3HDw8TjI3N9NbQ7ReIU+2EjqPtbbyoYRx6n0A6JPMCXQQExVfw==", null, false, null, "6065dba8-0b36-48ee-b660-fc3df8a02bed", null, false, "Admin@dci.com", 2 },
+                    { "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e", 0, false, "df108047-6dc6-497b-a31d-cf44406867ed", new DateTime(2022, 5, 7, 12, 33, 53, 4, DateTimeKind.Utc).AddTicks(3230), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CSO@dci.com", true, "CSO", 0, false, true, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CSO", false, null, null, null, "CSO@dci.com", "CSO@dci.com", "AQAAAAEAACcQAAAAEMIAPjgw1Olg3+A0YoHt0xV3q6Jbdu4lxbNa+soqm/larN8icCBasd2ucKpXCwqA/g==", null, false, null, "9c1cc6d7-2844-48df-8f41-fb38d1483e8c", null, false, "CSO@dci.com", 0 },
+                    { "5e31db4e-6e79-487e-4c9e-08d9b6be7d9e", 0, false, "d16f402d-cdf2-4dfd-aec6-606cdebdbe4b", new DateTime(2022, 5, 7, 12, 33, 53, 11, DateTimeKind.Utc).AddTicks(1135), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Supervisor@dci.com", true, "Supervisor", 0, false, false, false, true, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Supervisor", false, null, null, null, "Supervisor@dci.com", "Supervisor@dci.com", "AQAAAAEAACcQAAAAEL4a3HiPQu4GJ4FasGcASbrANvxEjbUziHrskyRzbZpKht6xLvws3AWFBZDK38tpHA==", null, false, null, "20cba648-acc8-421b-9f5a-a2204bb20664", null, false, "Supervisor@dci.com", 1 }
                 });
 
             migrationBuilder.InsertData(

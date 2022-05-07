@@ -1,4 +1,5 @@
 ﻿using DCI.Core;
+using DCI.Core.Utils;
 using DCI.Entities.DataAccess;
 using DCI.Entities.Entities;
 using DCI.Services;
@@ -102,6 +103,8 @@ namespace DCI
             //User Manager Service
             services.AddIdentity<DCIUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.Configure<SmtpConfigSettings>(Configuration.GetSection("SmtpConfig"));
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("DCI"),

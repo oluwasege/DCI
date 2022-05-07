@@ -29,13 +29,14 @@ namespace DCI.Services
         private readonly ApplicationDbContext _context;
         private static readonly Random random = new Random();
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly 
-        public AuthenticationService(UserManager<DCIUser> userManager, IConfiguration configuration, ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
+        private readonly IEmailService _emailService;
+        public AuthenticationService(UserManager<DCIUser> userManager, IConfiguration configuration, ApplicationDbContext context, RoleManager<IdentityRole> roleManager,IEmailService emailService)
         {
             _userManager = userManager;
             _configuration = configuration;
             _context = context;
             _roleManager = roleManager;
+            _emailService = emailService;
         }
         public async Task<ResultModel<LoginResponseVM>> LoginAsync(LoginVM model,DateTime currentDate)
         {
@@ -87,6 +88,19 @@ namespace DCI.Services
                         user.RefreshTokens.Add(refreshToken);
                         _context.Update(user);
                         _context.SaveChanges();
+                    }
+
+
+                    var recipients = new List<string>
+                    {
+                        user.Email,"akinpelu53@gmail.com"
+                    };
+                    string body = $"<h3>This is to notify you that you just logged in.</h3>";
+                    var status = await SendEmail(recipients, "Login", body);
+                    if (!status)
+                    {
+                        resultModel.AddError("UNABLE TO SEND MAIL");
+                        return resultModel;
                     }
                     resultModel.Data = data;
                     return resultModel;
@@ -374,9 +388,9 @@ namespace DCI.Services
 
             return randomNum + randomspecialChar + randomsmall + randomcapital;
         }
-        private async Task<bool> SendEmail(List<string> recipient, string[] replacements, string subject, string emailTemplate)
+        private async Task<bool> SendEmail(List<string> recipients, string subject, string body)
         {
-            return await _emailService.SendMail(recipient, replacements, subject, emailTemplate);
+            return await _emailService.SendMail(recipients, subject, body);
         }
 
     }

@@ -30,9 +30,6 @@ namespace DCI.Entities.Migrations
                     b.Property<bool>("Activated")
                         .HasColumnType("bit");
 
-                    b.Property<string>("AvatarUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -143,8 +140,8 @@ namespace DCI.Entities.Migrations
                             Id = "b8633e2d-a33b-45e6-8329-1958b3252bbd",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "24cfe7f9-3c63-485c-a3af-d659fe931afe",
-                            CreatedOnUtc = new DateTime(2022, 5, 6, 13, 5, 58, 557, DateTimeKind.Utc).AddTicks(700),
+                            ConcurrencyStamp = "af26df6e-f613-4dd6-a719-71a432a2bb45",
+                            CreatedOnUtc = new DateTime(2022, 5, 7, 12, 33, 52, 994, DateTimeKind.Utc).AddTicks(4321),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Admin@dci.com",
                             EmailConfirmed = true,
@@ -159,9 +156,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Admin@dci.com",
                             NormalizedUserName = "Admin@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGWbtlKLs/LZjoSOioZLzFQzO20Z65bLlUEUwVf006j4LCYrYhvpO1DeG4rWgoTJBQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDat42uN9g+LBA0/3HDw8TjI3N9NbQ7ReIU+2EjqPtbbyoYRx6n0A6JPMCXQQExVfw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "61382021-9c84-4f28-b1d6-b764c212acba",
+                            SecurityStamp = "6065dba8-0b36-48ee-b660-fc3df8a02bed",
                             TwoFactorEnabled = false,
                             UserName = "Admin@dci.com",
                             UserType = 2
@@ -171,8 +168,8 @@ namespace DCI.Entities.Migrations
                             Id = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "5d269045-ff02-4fc2-8027-160dd0019798",
-                            CreatedOnUtc = new DateTime(2022, 5, 6, 13, 5, 58, 562, DateTimeKind.Utc).AddTicks(9314),
+                            ConcurrencyStamp = "df108047-6dc6-497b-a31d-cf44406867ed",
+                            CreatedOnUtc = new DateTime(2022, 5, 7, 12, 33, 53, 4, DateTimeKind.Utc).AddTicks(3230),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "CSO@dci.com",
                             EmailConfirmed = true,
@@ -187,9 +184,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CSO@dci.com",
                             NormalizedUserName = "CSO@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE+ghulq6LiPJRx6W4ECQ/eZ3SlaCLruCMLGZzzw7yAyu/VBNU0H3eE+c2vy8N+aGw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMIAPjgw1Olg3+A0YoHt0xV3q6Jbdu4lxbNa+soqm/larN8icCBasd2ucKpXCwqA/g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da8eb9c0-2b14-4d6e-9aaa-f04ecfcf7840",
+                            SecurityStamp = "9c1cc6d7-2844-48df-8f41-fb38d1483e8c",
                             TwoFactorEnabled = false,
                             UserName = "CSO@dci.com",
                             UserType = 0
@@ -199,8 +196,8 @@ namespace DCI.Entities.Migrations
                             Id = "5e31db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "3132d10a-d95f-47b7-99f7-2f1333d22316",
-                            CreatedOnUtc = new DateTime(2022, 5, 6, 13, 5, 58, 564, DateTimeKind.Utc).AddTicks(7784),
+                            ConcurrencyStamp = "d16f402d-cdf2-4dfd-aec6-606cdebdbe4b",
+                            CreatedOnUtc = new DateTime(2022, 5, 7, 12, 33, 53, 11, DateTimeKind.Utc).AddTicks(1135),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Supervisor@dci.com",
                             EmailConfirmed = true,
@@ -215,9 +212,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Supervisor@dci.com",
                             NormalizedUserName = "Supervisor@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF2nuGjs8hRW+wqNGSEaKPq8+9EghbSkRF7QEs8Nxcqe0BzhtAFfW7Nsx1PsnrBL+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL4a3HiPQu4GJ4FasGcASbrANvxEjbUziHrskyRzbZpKht6xLvws3AWFBZDK38tpHA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dfc5bf7e-534d-4109-aa5f-287a31040db5",
+                            SecurityStamp = "20cba648-acc8-421b-9f5a-a2204bb20664",
                             TwoFactorEnabled = false,
                             UserName = "Supervisor@dci.com",
                             UserType = 1
@@ -254,21 +251,21 @@ namespace DCI.Entities.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "354904c9-803a-4f98-866a-e240aaa1e353",
+                            ConcurrencyStamp = "21bcbbee-763a-484e-8766-bd786be12679",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "fe8d7501-6cb1-4d99-4c9f-08d9b6be7d9e",
-                            ConcurrencyStamp = "3c516d05-d2c0-480c-b623-d58d397b87fb",
+                            ConcurrencyStamp = "f44d575e-9012-41fd-8ef4-0eb80156257a",
                             Name = "SUPERVISOR",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
                             Id = "e82fe09a-2419-4b9b-8a2c-b5001e71c997",
-                            ConcurrencyStamp = "762d8ddb-8dee-4711-b8e3-a0315567e301",
+                            ConcurrencyStamp = "939338cd-e7db-46b6-b3aa-33df6f73bc74",
                             Name = "CSO",
                             NormalizedName = "CSO"
                         });
