@@ -17,6 +17,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using DCI.Core.ViewModels.UserVMs;
+using DCI.Core.Enums;
 
 namespace DCI.Services
 {
@@ -25,11 +27,15 @@ namespace DCI.Services
         private readonly UserManager<DCIUser> _userManager;
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _context;
-        public AuthenticationService(UserManager<DCIUser> userManager, IConfiguration configuration, ApplicationDbContext context)
+        private static readonly Random random = new Random();
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly 
+        public AuthenticationService(UserManager<DCIUser> userManager, IConfiguration configuration, ApplicationDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _configuration = configuration;
             _context = context;
+            _roleManager = roleManager;
         }
         public async Task<ResultModel<LoginResponseVM>> LoginAsync(LoginVM model,DateTime currentDate)
         {
@@ -215,7 +221,86 @@ namespace DCI.Services
 
             return (new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken), jwtSecurityToken.ValidTo);
         }
+        public async Task<ResultModel<bool>> InviteUser(RegisterUserVM model,DateTime currentDate)
+        {
+            var result = new ResultModel<bool>();
+            try
+            {
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
 
+                if (existingUser != null)
+                {
+                    result.Message = "Account exists";
+                    result.AddError("Account exists");
+                    result.Data = false;
+                    return result;
+                }
+
+                var role = await _roleManager.FindByIdAsync(model.RoleId);
+
+                if (role == null)
+                {
+                    result.AddError("Role does not exist");
+                    result.Message = "Role does not exist";
+                    return result;
+                }
+
+                var user = new DCIUser
+                {
+                    FirstName = model.FirstName,
+                    Email = model.Email,
+                    DateOfBirth = model.DateOfBirth,
+                    LastName = model.LastName,
+                    UserName = model.Email.ToLower(),
+                    EmailConfirmed = false,
+                    Activated = false,
+                    PhoneNumber = model.PhoneNumber,
+                    Gender = model.Gender,
+                    State = model.State,
+                };
+                switch (role.Name)
+                {
+                    case AppRoles.AdminRole:
+                        user.UserType = UserTypes.Admin;
+                        user.IsAdmin = true;
+                        break;
+                    case AppRoles.SupervisorRole:
+                        user.UserType = UserTypes.Supervisor;
+                        user.IsSupervisor = true;
+                        break;
+                    case AppRoles.CSORole:
+                        user.UserType = UserTypes.CSO;
+                        user.IsCSO = true;
+                        break;
+                    default:
+                        break;
+                }
+                var password = GeneratePassword();
+
+                var response = await _userManager.CreateAsync(user, password);
+                // AN ERROR OCCURED WHILE CREATING USER
+                if (!response.Succeeded)
+                {
+                    foreach (var error in response.Errors)
+                    {
+                        result.AddError(error.Description);
+                    }
+                    return result;
+                };
+
+                await _userManager.AddToRoleAsync(user, role.Name);
+                result.Data = true;
+                result.Message = "User Created Successfully";
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+
+        }
         public async Task<ResultModel<bool>> ResetPassword(ResetPasswordVM model,string userId,DateTime currentDate)
         {
             var resultModel = new ResultModel<bool>();
@@ -255,9 +340,9 @@ namespace DCI.Services
             }
             catch (Exception ex)
             {
-                _log.LogError("{0}--------at {1}()", ex.Message ?? ex.InnerException.Message, nameof(ResetPassword));
-                result.AddError("An error occured!");
-                return result;
+                //_log.LogError("{0}--------at {1}()", ex.Message ?? ex.InnerException.Message, nameof(ResetPassword));
+                resultModel.AddError("An error occured!");
+                return resultModel;
             }
         }
         private async Task<DCIUser> GetUser(string emailAddress)
@@ -267,5 +352,32 @@ namespace DCI.Services
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             return user;
         }
+        public string GeneratePassword()
+        {
+            var numbers = "982345173";
+            var capital = "AQWSDETHFUJNGF";
+            var small = "adginfhy";
+            var specialChar = "#$%&(+";
+
+            var randomNum = new string(Enumerable.Repeat(numbers, 5)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            var randomcapital = new string(Enumerable.Repeat(capital, 1)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            var randomsmall = new string(Enumerable.Repeat(small, 2)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            var randomspecialChar = new string(Enumerable.Repeat(specialChar, 1)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+
+
+            return randomNum + randomspecialChar + randomsmall + randomcapital;
+        }
+        private async Task<bool> SendEmail(List<string> recipient, string[] replacements, string subject, string emailTemplate)
+        {
+            return await _emailService.SendMail(recipient, replacements, subject, emailTemplate);
+        }
+
     }
 }

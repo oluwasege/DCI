@@ -11,5 +11,7 @@ namespace DCI.Services.Interfaces
     public interface IAuthenticationService
     {
         Task<ResultModel<LoginResponseVM>> LoginAsync(LoginVM model, DateTime currentDate);
+        Task<ResultModel<bool>> ResetPassword(ResetPasswordVM model, string userId, DateTime currentDate);
+        Task<ResultModel<LoginResponseVM>> RefreshTokenAsync(string token, DateTime date);
     }
 }

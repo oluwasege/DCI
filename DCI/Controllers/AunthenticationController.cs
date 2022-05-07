@@ -23,7 +23,7 @@ namespace DCI.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse<LoginResponseVM>), 200)]
-        public async Task<IActionResult> Login([FromBody] LoginVM model)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginVM model)
         {
 
             try
@@ -33,11 +33,33 @@ namespace DCI.Controllers
                 if (!result.HasError)
                     return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
 
-                return ApiResponse<bool>(false, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+                return ApiResponse<LoginResponseVM>(null, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
             }
             catch (Exception ex)
             {
                // _log.LogInformation(ex.InnerException, ex.Message);
+
+                return HandleError(ex);
+            }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordVM model)
+        {
+
+            try
+            {
+                var result = await _authService.ResetPassword(model,UserId, CurrentDateTime);
+
+                if (!result.HasError)
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+
+                return ApiResponse<bool>(false, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+            }
+            catch (Exception ex)
+            {
+                // _log.LogInformation(ex.InnerException, ex.Message);
 
                 return HandleError(ex);
             }

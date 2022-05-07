@@ -46,9 +46,9 @@ namespace DCI.Core.Utils
         //    get { return Guid.Parse(CurrentUser.Claims.FirstOrDefault(x => x.Type == CoreConstants.UserIdKey)?.Value); }
         //}
 
-        protected Guid UserId
+        protected string UserId
         {
-            get { return Guid.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value); }
+            get { return User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value; }
             //get { return Guid.Parse(CurrentUser.Identities.FirstOrDefault(c => c.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value); }
         }
 

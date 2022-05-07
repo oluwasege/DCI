@@ -14,7 +14,6 @@ namespace DCI.Entities.Entities
         public List<RefreshToken> RefreshTokens { get; set; }
         public string ResetPasswordToken { get; set; }
         public DateTime LastModifiedDate { get; set; }
-        public string AvatarUrl { get; set; }
         public DCIUser()
         {
             Id = Guid.NewGuid().ToString();
