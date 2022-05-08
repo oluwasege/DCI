@@ -30,7 +30,7 @@ namespace DCI.Entities.ViewModels
 
         public string Keyword { get; set; }
 
-        public DateFilter DateFilter { get; set; }
+       // public DateFilter DateFilter { get; set; }
         //public List<DateFilter> DateFilters { get; set; } = new List<DateFilter>();
 
         //public List<Filter> Filters = new List<Filter>(); 

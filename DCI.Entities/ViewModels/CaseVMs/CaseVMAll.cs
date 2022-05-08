@@ -11,7 +11,7 @@ namespace DCI.Entities.ViewModels.CaseVMs
     {
         public string Id { get; set; }
         public DateTime CreatedOnUtc { get; set; }
-        public List<ViolenceType> ViolenceType { get; set; }
+        public ViolenceTypeVM ViolenceType { get; set; }
         public string State { get; set; }
         public string LGA { get; set; }
         public string Statement { get; set; }

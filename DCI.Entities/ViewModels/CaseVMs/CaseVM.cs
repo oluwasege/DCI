@@ -11,7 +11,7 @@ namespace DCI.Entities.ViewModels.CaseVMs
     {
         public DateTime CreatedOnUtc { get; set; }
         public string CSOUserId { get; set; }
-        public List<ViolenceType> ViolenceType { get; set; } 
+        public ViolenceTypeVM ViolenceType { get; set; } 
         public string State { get; set; }
         public string LGA { get; set; }
         public string Statement { get; set; }
@@ -20,7 +20,7 @@ namespace DCI.Entities.ViewModels.CaseVMs
         public StateOfCase StateOfCase { get; set; }
         public UserVM CSOUser { get; set; }
         public ApprovalStatus ApprovalStatus { get; set; }
-        public Approval ApprovalAction { get; set; }
+        public ApprovalVM ApprovalAction { get; set; }
         public DateTime LastDateModified { get; set; }
         public string LastModifiedUserId { get; set; }
 
@@ -45,6 +45,23 @@ namespace DCI.Entities.ViewModels.CaseVMs
                     LastDateModified = model.LastDateModified,
                     LastModifiedUserId = model.LastModifiedUserId,
 
+                };
+        }
+    }
+
+    public class ApprovalVM
+    {
+        public DateTime ActionDate { get; set; }
+        public string ActionComment { get; set; }
+
+        public static implicit operator ApprovalVM(Approval model)
+        {
+            return model == null
+                ? null
+                : new ApprovalVM()
+                {
+                    ActionComment=model.ActionComment,
+                    ActionDate=model.ActionDate
                 };
         }
     }

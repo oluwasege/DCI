@@ -6,6 +6,11 @@ namespace DCI.Core
 {
     public class ViolenceType
     {
+        public ViolenceType()
+        {
+            Id = new Guid().ToString();
+        }
+        public string Id { get; set; }
         public bool PhysicalAssault { get; set; }
         public bool Defilement { get; set; }
         public bool Rape { get; set; }

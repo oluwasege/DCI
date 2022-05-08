@@ -52,10 +52,24 @@ namespace DCI.Services
                     IsPerpetratorArrested = model.IsPerpetratorArrested,
                     IsFatal = model.IsFatal,
                     ApprovalStatus = ApprovalStatus.PENDING,
-                    IsDeleted = false
+                    IsDeleted = false,
+                    ViolenceType = new Core.ViolenceType
+                    {
+                        ChildAbuse = model.ViolenceType.ChildAbuse,
+                        ViolationOfProperty = model.ViolenceType.ViolationOfProperty,
+                        SocialAssault = model.ViolenceType.SocialAssault,
+                        Rape = model.ViolenceType.Rape,
+                        Psychological = model.ViolenceType.Psychological,
+                        PhysicalAssault = model.ViolenceType.PhysicalAssault,
+                        ForcedMarriage = model.ViolenceType.ForcedMarriage,
+                        CyberBullying = model.ViolenceType.CyberBullying,
+                        Defilement = model.ViolenceType.Defilement,
+                        DenialOfResources = model.ViolenceType.DenialOfResources,
+                        EarlyMarriage = model.ViolenceType.EarlyMarriage,
+                        FemaleGenitalMutilation = model.ViolenceType.FemaleGenitalMutilation
+                    }
                 };
 
-                newCase.ViolenceType = model.ViolenceType; 
                 
                 await _context.Cases.AddAsync(newCase);
                 await _context.SaveChangesAsync();
@@ -271,41 +285,49 @@ namespace DCI.Services
                 }
 
                 existingCase.ApprovalStatus = status;
-                if(status == ApprovalStatus.REJECTED_BY_SUPERVISOR||status==ApprovalStatus.REJECTED_BY_ADMIN)
-                {
-                    if (existingCase.ApprovalAction.ApprovedBy != null)
-                        existingCase.ApprovalAction.ApprovedBy = null;
-                }
-                if (status == ApprovalStatus.APPROVED_BY_SUPERVISOR || status == ApprovalStatus.APPROVED_BY_ADMIN)
-                {
-                    if (existingCase.ApprovalAction.RejectedBy != null)
-                        existingCase.ApprovalAction.RejectedBy = null;
-                }
+                //if(status == ApprovalStatus.REJECTED_BY_SUPERVISOR||status==ApprovalStatus.REJECTED_BY_ADMIN)
+                //{
+                //    if (existingCase.ApprovalAction.ApprovedBy != null)
+                //        existingCase.ApprovalAction.ApprovedBy = null;
+                //}
+                //if (status == ApprovalStatus.APPROVED_BY_SUPERVISOR || status == ApprovalStatus.APPROVED_BY_ADMIN)
+                //{
+                //    if (existingCase.ApprovalAction.RejectedBy != null)
+                //        existingCase.ApprovalAction.RejectedBy = null;
+                //}
                 existingCase.ApprovalAction.ActionComment = model.Comment;
                 existingCase.ApprovalAction.ActionDate = currentDate;
                 existingCase.LastDateModified = currentDate;
-                _context.Cases.Update(existingCase);
-                await _context.SaveChangesAsync();
+               
 
                 switch (status)
                 {
                     case ApprovalStatus.APPROVED_BY_SUPERVISOR:
                         resultModel.Message = "APPROVAL SUCESSFUL";
-                      
+                        existingCase.ApprovalAction.ApprovedBy = currentUserId;
+                        existingCase.ApprovalAction.RejectedBy = null;
                         break;
 
                     case ApprovalStatus.APPROVED_BY_ADMIN:
                         resultModel.Message = "APPROVAL SUCCESSFUL";
+                        existingCase.ApprovalAction.ApprovedBy = currentUserId;
+                        existingCase.ApprovalAction.RejectedBy = null;
                         break;
 
                     case ApprovalStatus.REJECTED_BY_SUPERVISOR:
                         resultModel.Message = "REJECTION SUCESSFUL";
+                        existingCase.ApprovalAction.ApprovedBy = null;
+                        existingCase.ApprovalAction.RejectedBy = currentUserId;
                         break;
                     case ApprovalStatus.REJECTED_BY_ADMIN:
                         resultModel.Message = "REJECTION SUCESSFUL";
+                        existingCase.ApprovalAction.ApprovedBy = null;
+                        existingCase.ApprovalAction.RejectedBy = currentUserId;
                         break;
 
                 }
+                _context.Cases.Update(existingCase);
+                await _context.SaveChangesAsync();
                 resultModel.Data = true;
                 return resultModel;
             }
@@ -353,9 +375,9 @@ namespace DCI.Services
         private async Task<DCIUser> GetUserById(string id)=> await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
 
         private IQueryable<Case> GetAllCase() => _context.Cases.AsQueryable()
-                                                               .Include(x => x.ApprovalAction)
+                                                               .Include(x => x.ApprovalAction).Include(x=>x.ViolenceType)
                                                                 .Include(x=>x.CSOUser);
-        private async Task<Case> GetCaseById(string id)=> await _context.Cases.FirstOrDefaultAsync(x => x.Id == id);
+        private async Task<Case> GetCaseById(string id)=> await _context.Cases.Include(x=>x.ApprovalAction).Include(x=>x.ViolenceType).FirstOrDefaultAsync(x => x.Id == id);
 
         private IQueryable<Case> EntityFilter(IQueryable<Case> query, BaseSearchViewModel model)
         {

@@ -52,13 +52,15 @@ namespace DCI.Services
 
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    var response = await _userManager.IsEmailConfirmedAsync(user);
+                    //var response = await _userManager.IsEmailConfirmedAsync(user);
 
-                    if (response == false)
-                    {
-                        resultModel.AddError("Email not confirmed!");
-                        return resultModel;
-                    }
+                    //if (response == false)
+                    //{
+                    //    if(user.Activated==false)
+                    //    { }
+                    //    resultModel.AddError("Email not confirmed!");
+                    //    return resultModel;
+                    //}
 
                     var userRoles = await _userManager.GetRolesAsync(user);
                     var (token, expiration) = CreateJwtTokenAsync(user, userRoles);

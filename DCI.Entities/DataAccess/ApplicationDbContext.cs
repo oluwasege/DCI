@@ -19,8 +19,8 @@ namespace DCI.Entities.DataAccess
         }
 
         public DbSet<Case> Cases { get; set; }
-        public DbSet<Approval> Approvals { get; set; }
-       // public DbSet<Viole> MyProperty { get; set; }
+        //public DbSet<Approval> Approvals { get; set; }
+        //public DbSet<ViolenceType> ViolenceTypes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -39,6 +39,28 @@ namespace DCI.Entities.DataAccess
             var SupervisorRoleId = new Guid("FE8D7501-6CB1-4D99-4C9F-08D9B6BE7D9E").ToString();
             var SupervisorDCIUserId = new Guid("5E31DB4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
 
+            var case1 = new Guid("5E319B4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var case2 = new Guid("5E31DB4E-6E79-487E-4C9E-08D9B6BE7C9E").ToString();
+            var case3 = new Guid("5E31DB4E-6E79-487E-4C9E-08D9B6BE7D9A").ToString();
+            var case4 = new Guid("5E21DB4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var case5 = new Guid("4E31DB4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var case6 = new Guid("5E31DB4E-6A79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var case7 = new Guid("5E31DB4E-6E79-487E-4C9A-08D9B6BE7D9E").ToString();
+            var case8 = new Guid("5E31DB4E-6E79-487E-5C9E-08D9B6BE7D9E").ToString();
+            var case9 = new Guid("5E31DB4E-6E79-487E-4C9E-18D9B6BE7D9E").ToString();
+            var case10 = new Guid("5E31DB4E-6E79-437E-4C9E-08D9B6BE7D9E").ToString();
+
+            var approve1 = new Guid("5E319B4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var approve2 = new Guid("5E31DB4E-6E79-487E-4C9E-08D9B6BE7C9E").ToString();
+            var approve3 = new Guid("5E31DB4E-6E79-487E-4C9E-08D9B6BE7D9A").ToString();
+            var approve4 = new Guid("5E21DB4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var approve5 = new Guid("4E31DB4E-6E79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var approve6 = new Guid("5E31DB4E-6A79-487E-4C9E-08D9B6BE7D9E").ToString();
+            var approve7 = new Guid("5E31DB4E-6E79-487E-4C9A-08D9B6BE7D9E").ToString();
+            var approve8 = new Guid("5E31DB4E-6E79-487E-5C9E-08D9B6BE7D9E").ToString();
+            var approve9 = new Guid("5E31DB4E-6E79-487E-4C9E-18D9B6BE7D9E").ToString();
+            var approve10 = new Guid("5E31DB4E-6E79-437E-4C9E-08D9B6BE7D9E").ToString();
+
             var CSORoleId = new Guid("E82FE09A-2419-4B9B-8A2C-B5001E71C997").ToString();
             var CSODCIUserId = new Guid("CDAE8CC2-ADEC-4AB1-4CA0-08D9B6BE7D9E").ToString();
             var CSODCIUserIdSecond = new Guid("EEAE8CC2-ADEC-4AB1-4CA0-08D9B6BE7D9E").ToString();
@@ -46,6 +68,95 @@ namespace DCI.Entities.DataAccess
             var adminRole = AppRoles.AdminRole;
             var cSORole = AppRoles.CSORole;
             var supervisorRole = AppRoles.SupervisorRole;
+
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve1,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve2,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve3,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve4,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve5,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve6,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve7,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve8,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve9,
+                RejectedBy = null,
+
+            });
+            builder.Entity<Approval>().HasData(new Approval
+            {
+                ActionComment = null,
+                Id = approve10,
+                RejectedBy = null,
+
+            });
+
+            var violenceId = new Guid().ToString();
+            builder.Entity<ViolenceType>().HasData(new ViolenceType
+            {
+                Id = violenceId,
+                ChildAbuse = true,
+                CyberBullying = true,
+                Defilement = true,
+                DenialOfResources = true,
+                EarlyMarriage = true,
+                FemaleGenitalMutilation = true,
+                ForcedMarriage = true,
+                PhysicalAssault = true,
+                Psychological = true,
+                Rape = true,
+                SocialAssault = true,
+                ViolationOfProperty = true
+            });
 
             builder.Entity<IdentityRole>().HasData(new IdentityRole
             {
@@ -81,6 +192,7 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciAdmin@2022"),
                 UserType = UserTypes.Admin,
                 IsAdmin = true,
+                State = "Lagos"
             });
 
             builder.Entity<DCIUser>().HasData(new DCIUser
@@ -128,6 +240,7 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciSupervisor@2022"),
                 UserType = UserTypes.Supervisor,
                 IsSupervisor = true,
+                State = "Lagos"
             });
             
             builder.Entity<IdentityUserRole<string>>().HasData(
@@ -160,7 +273,7 @@ namespace DCI.Entities.DataAccess
             builder.Entity<Case>().HasData(
                 new Case
                 {
-                    Id = new Guid().ToString(),
+                    Id = case1,
                     CSOUserId = CSODCIUserId,
                     IsFatal = true,
                     StateOfCase = StateOfCase.Open,
@@ -168,12 +281,14 @@ namespace DCI.Entities.DataAccess
                     State = "Lagos",
                     Statement = "First Case",
                     IsPerpetratorArrested = false,
-                    ApprovalStatus=ApprovalStatus.PENDING
+                    ApprovalStatus=ApprovalStatus.PENDING,
+                    ViolenceTypeId= violenceId,
+                    ApprovalActionId=approve1
                 });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case2,
                    CSOUserId = CSODCIUserIdSecond,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -181,12 +296,14 @@ namespace DCI.Entities.DataAccess
                    State = "Ogun",
                    Statement = "statement",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve2
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case3,
                    CSOUserId = CSODCIUserIdSecond,
                    IsFatal = false,
                    StateOfCase = StateOfCase.Closed,
@@ -194,12 +311,14 @@ namespace DCI.Entities.DataAccess
                    State = "Ogun",
                    Statement = "Second Statement",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve3
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case4,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Closed,
@@ -207,12 +326,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "Second case",
                    IsPerpetratorArrested = true,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve4
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case5,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -220,12 +341,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "Third case",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve5
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id =case6,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -233,12 +356,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "fourth",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve6
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case7,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -246,12 +371,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "fifth",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve7
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case8,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -259,12 +386,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "sixth",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve8
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case9,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -272,12 +401,14 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "seventh",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve9
                });
             builder.Entity<Case>().HasData(
                new Case
                {
-                   Id = new Guid().ToString(),
+                   Id = case10,
                    CSOUserId = CSODCIUserId,
                    IsFatal = true,
                    StateOfCase = StateOfCase.Open,
@@ -285,7 +416,9 @@ namespace DCI.Entities.DataAccess
                    State = "Lagos",
                    Statement = "eight",
                    IsPerpetratorArrested = false,
-                   ApprovalStatus = ApprovalStatus.PENDING
+                   ApprovalStatus = ApprovalStatus.PENDING,
+                   ViolenceTypeId = violenceId,
+                   ApprovalActionId = approve10
                });
         }
     }

@@ -104,6 +104,7 @@ namespace DCI
             services.AddIdentity<DCIUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ICaseService, CaseService>();
             services.Configure<SmtpConfigSettings>(Configuration.GetSection("SmtpConfig"));
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(
