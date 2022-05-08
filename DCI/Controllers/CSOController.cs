@@ -42,5 +42,27 @@ namespace DCI.Controllers
                 return HandleError(ex);
             }
         }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        public async Task<IActionResult> SubmitCase([FromBody] SubmitCaseVM model)
+        {
+
+            try
+            {
+                var result = await _caseService.SubmitAsync(model, UserId);
+
+                if (!result.HasError)
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+
+                return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+            }
+            catch (Exception ex)
+            {
+                // _log.LogInformation(ex.InnerException, ex.Message);
+
+                return HandleError(ex);
+            }
+        }
     }
 }

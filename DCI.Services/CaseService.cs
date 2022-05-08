@@ -392,6 +392,16 @@ namespace DCI.Services
                             query = query.Where(x => x.ApprovalStatus == ApprovalStatus.APPROVED_BY_SUPERVISOR);
                             break;
                         }
+                    case "Open":
+                        {
+                            query = query.Where(x => x.StateOfCase == StateOfCase.Open);
+                            break;
+                        }
+                    case "Closed":
+                        {
+                            query = query.Where(x => x.StateOfCase == StateOfCase.Closed);
+                            break;
+                        }
                     default:
                         {
                             break;

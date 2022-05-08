@@ -179,5 +179,49 @@ namespace DCI.Controllers
                 return HandleError(ex);
             }
         }
+
+        [HttpPost("{id}")]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        public async Task<IActionResult> ApproveCase(string id, [FromBody] ApprovalModel model)
+        {
+
+            try
+            {
+                var result = await _caseService.ActionAsync(id, UserId, model, CurrentDateTime, ApprovalStatus.APPROVED_BY_ADMIN);
+
+                if (!result.HasError)
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+
+                return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+            }
+            catch (Exception ex)
+            {
+                // _log.LogInformation(ex.InnerException, ex.Message);
+
+                return HandleError(ex);
+            }
+        }
+
+        [HttpPost("{id}")]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        public async Task<IActionResult> RejectCase(string id, [FromBody] ApprovalModel model)
+        {
+
+            try
+            {
+                var result = await _caseService.ActionAsync(id, UserId, model, CurrentDateTime, ApprovalStatus.REJECTED_BY_ADMIN);
+
+                if (!result.HasError)
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+
+                return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+            }
+            catch (Exception ex)
+            {
+                // _log.LogInformation(ex.InnerException, ex.Message);
+
+                return HandleError(ex);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DCI.Core.Enums;
+﻿using DCI.Core;
+using DCI.Core.Enums;
 using DCI.Entities.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace DCI.Entities.DataAccess
 
         public DbSet<Case> Cases { get; set; }
         public DbSet<Approval> Approvals { get; set; }
+       // public DbSet<Viole> MyProperty { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -39,6 +41,7 @@ namespace DCI.Entities.DataAccess
 
             var CSORoleId = new Guid("E82FE09A-2419-4B9B-8A2C-B5001E71C997").ToString();
             var CSODCIUserId = new Guid("CDAE8CC2-ADEC-4AB1-4CA0-08D9B6BE7D9E").ToString();
+            var CSODCIUserIdSecond = new Guid("EEAE8CC2-ADEC-4AB1-4CA0-08D9B6BE7D9E").ToString();
 
             var adminRole = AppRoles.AdminRole;
             var cSORole = AppRoles.CSORole;
@@ -93,6 +96,23 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciCso@2022"),
                 UserType=UserTypes.CSO,
                 IsCSO = true,
+                State="Lagos"
+            });
+
+            builder.Entity<DCIUser>().HasData(new DCIUser
+            {
+                Id = CSODCIUserIdSecond,
+                UserName = "CSOSecond@dci.com",
+                FirstName = "Second",
+                LastName = "Second",
+                NormalizedUserName = "CSOSecond@dci.com",
+                Email = "CSOSecond@dci.com",
+                NormalizedEmail = "CSOSecond@dci.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "DciCso@2022"),
+                UserType = UserTypes.CSO,
+                IsCSO = true,
+                State="Ogun"
             });
 
             builder.Entity<DCIUser>().HasData(new DCIUser
@@ -130,12 +150,143 @@ namespace DCI.Entities.DataAccess
                 RoleId = CSORoleId,
                 UserId = CSODCIUserId,
             });
+            builder.Entity<IdentityUserRole<string>>().HasData(
+           new IdentityUserRole<string>
+           {
+               RoleId = CSORoleId,
+               UserId = CSODCIUserIdSecond,
+           });
 
             builder.Entity<Case>().HasData(
                 new Case
                 {
-                     
+                    Id = new Guid().ToString(),
+                    CSOUserId = CSODCIUserId,
+                    IsFatal = true,
+                    StateOfCase = StateOfCase.Open,
+                    LGA = "Lagos",
+                    State = "Lagos",
+                    Statement = "First Case",
+                    IsPerpetratorArrested = false,
+                    ApprovalStatus=ApprovalStatus.PENDING
                 });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserIdSecond,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Abeokuta",
+                   State = "Ogun",
+                   Statement = "statement",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserIdSecond,
+                   IsFatal = false,
+                   StateOfCase = StateOfCase.Closed,
+                   LGA = "Ogun",
+                   State = "Ogun",
+                   Statement = "Second Statement",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Closed,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "Second case",
+                   IsPerpetratorArrested = true,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "Third case",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "fourth",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "fifth",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "sixth",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "seventh",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
+            builder.Entity<Case>().HasData(
+               new Case
+               {
+                   Id = new Guid().ToString(),
+                   CSOUserId = CSODCIUserId,
+                   IsFatal = true,
+                   StateOfCase = StateOfCase.Open,
+                   LGA = "Lagos",
+                   State = "Lagos",
+                   Statement = "eight",
+                   IsPerpetratorArrested = false,
+                   ApprovalStatus = ApprovalStatus.PENDING
+               });
         }
     }
 }
