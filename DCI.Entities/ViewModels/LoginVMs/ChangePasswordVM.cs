@@ -18,7 +18,7 @@ namespace DCI.Entities.ViewModels.LoginVMs
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmNewPassword { get; set; }
     }
 }

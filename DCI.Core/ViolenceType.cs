@@ -8,7 +8,7 @@ namespace DCI.Core
     {
         public ViolenceType()
         {
-            Id = new Guid().ToString();
+            Id = Guid.NewGuid().ToString();
         }
         public string Id { get; set; }
         public bool PhysicalAssault { get; set; }

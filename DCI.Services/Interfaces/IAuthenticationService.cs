@@ -18,7 +18,7 @@ namespace DCI.Services.Interfaces
         Task<ResultModel<UserVM>> GetUserAsync(string email);
         Task<ResultModel<string>> AssignUserToRole(string email, string role, string CurrentUserID);
         Task<ResultModel<List<RoleVm>>> GetAllRoles();
-        Task<ResultModel<bool>> ChangePasswordAsync(ChangePasswordVM model, DateTime currentDate)
+        Task<ResultModel<bool>> ChangePasswordAsync(ChangePasswordVM model, DateTime currentDate);
 
 
 

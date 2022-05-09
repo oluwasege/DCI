@@ -19,6 +19,7 @@ namespace DCI.Entities.ViewModels.UserVMs
         public bool IsAdmin { get; set; }
         public bool IsCSO { get; set; }
         public bool IsSupervisor { get; set; }
+        public bool IsActive { get; set; }
         public IList<string> Roles { get; set; }
 
         public static implicit operator UserVM(DCIUser model)
@@ -36,7 +37,8 @@ namespace DCI.Entities.ViewModels.UserVMs
                     IsSupervisor = model.IsSupervisor,
                     LastName = model.LastName,
                     State = model.State,
-                    UserType = model.UserType
+                    UserType = model.UserType,
+                    IsActive=model.Activated
                 };
         }
     }

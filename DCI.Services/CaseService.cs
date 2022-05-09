@@ -1,4 +1,5 @@
-﻿using DCI.Core.Enums;
+﻿using DCI.Core;
+using DCI.Core.Enums;
 using DCI.Core.Utils;
 using DCI.Entities.DataAccess;
 using DCI.Entities.Entities;
@@ -7,6 +8,7 @@ using DCI.Entities.ViewModels.CaseVMs;
 using DCI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,9 +17,11 @@ namespace DCI.Services
     public class CaseService:ICaseService
     {
         private readonly ApplicationDbContext _context;
-        public CaseService(ApplicationDbContext context)
+        private readonly IEmailService _emailService;
+        public CaseService(ApplicationDbContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public async Task<ResultModel<bool>>SubmitAsync(SubmitCaseVM model, string userId)
@@ -53,8 +57,10 @@ namespace DCI.Services
                     IsFatal = model.IsFatal,
                     ApprovalStatus = ApprovalStatus.PENDING,
                     IsDeleted = false,
-                    ViolenceType = new Core.ViolenceType
+                    ApprovalAction=new Approval(),
+                    ViolenceType = new ViolenceType()
                     {
+                        
                         ChildAbuse = model.ViolenceType.ChildAbuse,
                         ViolationOfProperty = model.ViolenceType.ViolationOfProperty,
                         SocialAssault = model.ViolenceType.SocialAssault,
@@ -73,6 +79,16 @@ namespace DCI.Services
                 
                 await _context.Cases.AddAsync(newCase);
                 await _context.SaveChangesAsync();
+                var recipients = new List<string>
+                    {
+                        user.Email
+                    };
+                string body = $"<h3>Your Case has been submitted and is pending approval.</h3>";
+                var status = await SendEmail(recipients, "Case Submission", body);
+                if (!status)
+                {
+                    resultModel.Message="Unable to send mail but case has been created";
+                }
                 resultModel.Data = true;
                 resultModel.Message = "Case Submited";
                 return resultModel;
@@ -303,24 +319,24 @@ namespace DCI.Services
                 switch (status)
                 {
                     case ApprovalStatus.APPROVED_BY_SUPERVISOR:
-                        resultModel.Message = "APPROVAL SUCESSFUL";
+                        resultModel.Message = "Case has been approved by Supervisor";
                         existingCase.ApprovalAction.ApprovedBy = currentUserId;
                         existingCase.ApprovalAction.RejectedBy = null;
                         break;
 
                     case ApprovalStatus.APPROVED_BY_ADMIN:
-                        resultModel.Message = "APPROVAL SUCCESSFUL";
+                        resultModel.Message = "Case has been approved by Admin";
                         existingCase.ApprovalAction.ApprovedBy = currentUserId;
                         existingCase.ApprovalAction.RejectedBy = null;
                         break;
 
                     case ApprovalStatus.REJECTED_BY_SUPERVISOR:
-                        resultModel.Message = "REJECTION SUCESSFUL";
+                        resultModel.Message = "Case has been rejcted by Supervisor";
                         existingCase.ApprovalAction.ApprovedBy = null;
                         existingCase.ApprovalAction.RejectedBy = currentUserId;
                         break;
                     case ApprovalStatus.REJECTED_BY_ADMIN:
-                        resultModel.Message = "REJECTION SUCESSFUL";
+                        resultModel.Message = "Case has been rejected by Admin";
                         existingCase.ApprovalAction.ApprovedBy = null;
                         existingCase.ApprovalAction.RejectedBy = currentUserId;
                         break;
@@ -328,6 +344,15 @@ namespace DCI.Services
                 }
                 _context.Cases.Update(existingCase);
                 await _context.SaveChangesAsync();
+                var recipients = new List<string>
+                    {
+                        existingCase.CSOUser.Email
+                    };
+                var mailStatus = await SendEmail(recipients, $"Case Validation", $"{resultModel.Message}");
+                if (!mailStatus)
+                {
+                    resultModel.Message = "Unable to send mail but case has been created";
+                }
                 resultModel.Data = true;
                 return resultModel;
             }
@@ -377,7 +402,7 @@ namespace DCI.Services
         private IQueryable<Case> GetAllCase() => _context.Cases.AsQueryable()
                                                                .Include(x => x.ApprovalAction).Include(x=>x.ViolenceType)
                                                                 .Include(x=>x.CSOUser);
-        private async Task<Case> GetCaseById(string id)=> await _context.Cases.Include(x=>x.ApprovalAction).Include(x=>x.ViolenceType).FirstOrDefaultAsync(x => x.Id == id);
+        private async Task<Case> GetCaseById(string id)=> await _context.Cases.Include(x=>x.ApprovalAction).Include(x=>x.ViolenceType).Include(x=>x.CSOUser).FirstOrDefaultAsync(x => x.Id == id);
 
         private IQueryable<Case> EntityFilter(IQueryable<Case> query, BaseSearchViewModel model)
         {
@@ -424,6 +449,11 @@ namespace DCI.Services
                             query = query.Where(x => x.StateOfCase == StateOfCase.Closed);
                             break;
                         }
+                    case "StatementName":
+                        {
+                            query = query.Where(x => x.Statement.ToLower().Contains(keyword.ToLower()));
+                            break;
+                        }
                     default:
                         {
                             break;
@@ -432,6 +462,10 @@ namespace DCI.Services
             }
 
             return query;
+        }
+        private async Task<bool> SendEmail(List<string> recipients, string subject, string body)
+        {
+            return await _emailService.SendMail(recipients, subject, body);
         }
 
     }

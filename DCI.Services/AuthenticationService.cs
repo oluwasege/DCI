@@ -99,13 +99,13 @@ namespace DCI.Services
 
                     var recipients = new List<string>
                     {
-                        user.Email,"akinpelu53@gmail.com"
+                        user.Email
                     };
                     string body = $"<h3>This is to notify you that you just logged in.</h3>";
                     var status = await SendEmail(recipients, "Login", body);
                     if (!status)
                     {
-                        resultModel.AddError("UNABLE TO SEND MAIL");
+                        resultModel.AddError("Unable to send mail");
                         return resultModel;
                     }
                     resultModel.Data = data;
@@ -141,12 +141,21 @@ namespace DCI.Services
                 }
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.OldPassword))
                 {
-                    var userRoles = await _userManager.GetRolesAsync(user);
-                    var (token, expiration) = CreateJwtTokenAsync(user, userRoles);
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var activateAccount = await _userManager.ConfirmEmailAsync(user, token);
                     if (activateAccount.Succeeded == false)
                     {
                         resultModel.AddError("Email not confirmed!");
+                        return resultModel;
+                    }
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var response = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
+                    if(response.Succeeded == false)
+                    {
+                        foreach (var item in response.Errors)
+                        {
+                            resultModel.AddError(item.Description);
+                        }
                         return resultModel;
                     }
                     await UpdateUserLastLogin(user.Email, currentDate, true);
@@ -191,7 +200,7 @@ namespace DCI.Services
             var userRoles = await _userManager.GetRolesAsync(user);
             var (newtoken, expiration) = CreateJwtTokenAsync(user, userRoles);
 
-            await UpdateUserLastLogin(user.Email, date);
+            await UpdateUserLastLogin(user.Email, date,false);
 
             var data = new LoginResponseVM()
             {
@@ -297,7 +306,7 @@ namespace DCI.Services
                     return result;
                 }
 
-                var role = await _roleManager.FindByIdAsync(model.Role);
+                var role = await _roleManager.FindByNameAsync(model.Role);
 
                 if (role == null)
                 {
@@ -352,9 +361,9 @@ namespace DCI.Services
                 await _userManager.AddToRoleAsync(user, role.Name);
                 var recipients = new List<string>
                     {
-                        user.Email,"akinpelu53@gmail.com"
+                        user.Email
                     };
-                string body = $"<h3>This is to notify you that your account has been created at DCI.<br> Email Address: {model.Email}<br>Password: {password}<br>Please change your password after login</h3>";
+                string body = $"<h3>This is to notify you that your account has been created at DCI.<br> Email Address: {model.Email}<br>Password: {password}<br>Please change your password before you can login</h3>";
                 var status = await SendEmail(recipients, "Account Invitation", body);
                 if (!status)
                 {

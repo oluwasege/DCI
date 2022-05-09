@@ -23,7 +23,7 @@ namespace DCI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiResponse<PaginatedList<CaseVMAll>>), 200)]
-        public async Task<IActionResult> GetAllPaginatedForCSO([FromQuery] BaseSearchViewModel model)
+        public async Task<IActionResult> GetAllCasesSubmittedbyACSO([FromQuery] BaseSearchViewModel model)
         {
 
             try
@@ -31,7 +31,7 @@ namespace DCI.Controllers
                 var result = await _caseService.GetAllPaginatedForCSO(model, UserId);
 
                 if (!result.HasError)
-                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK,result.Data.TotalCount);
 
                 return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
             }
@@ -45,7 +45,7 @@ namespace DCI.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
-        public async Task<IActionResult> SubmitCase([FromBody] SubmitCaseVM model)
+        public async Task<IActionResult> SubmitACase([FromBody] SubmitCaseVM model)
         {
 
             try

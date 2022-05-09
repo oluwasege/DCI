@@ -72,7 +72,7 @@ namespace DCI.Controllers
 
         [HttpGet("{email}")]
         [ProducesResponseType(typeof(ApiResponse<UserVM>), 200)]
-        public async Task<IActionResult> GetUser(string email)
+        public async Task<IActionResult> GetAUser(string email)
         {
 
             try
@@ -94,7 +94,7 @@ namespace DCI.Controllers
 
         [HttpPost("{email}")]
         [ProducesResponseType(typeof(ApiResponse<string>), 200)]
-        public async Task<IActionResult> AssignUserToRole(string email,[FromBody]RoleVm model)
+        public async Task<IActionResult> AssignAUserToRole(string email,[FromBody]RoleVm model)
         {
 
             try
@@ -138,7 +138,7 @@ namespace DCI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiResponse<PaginatedList<CaseVMAll>>), 200)]
-        public async Task<IActionResult> GetAllPaginatedForAdmin([FromQuery] BaseSearchViewModel model)
+        public async Task<IActionResult> GetAllCases([FromQuery] BaseSearchViewModel model)
         {
 
             try
@@ -146,7 +146,7 @@ namespace DCI.Controllers
                 var result = await _caseService.GetAllPaginatedForAdmin(model,UserId);
 
                 if (!result.HasError)
-                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK, result.Data.TotalCount);
 
                 return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
             }
@@ -160,7 +160,7 @@ namespace DCI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiResponse<PaginatedList<CaseVMAll>>), 200)]
-        public async Task<IActionResult> GetAllPaginatedValidatedbySupervisor([FromQuery] BaseSearchViewModel model)
+        public async Task<IActionResult> GetAllCasesValidatedbySupervisors([FromQuery] BaseSearchViewModel model)
         {
 
             try
@@ -168,7 +168,7 @@ namespace DCI.Controllers
                 var result = await _caseService.GetAllPaginatedValidatedbySupervisor(model, UserId);
 
                 if (!result.HasError)
-                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK, result.Data.TotalCount);
 
                 return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
             }
@@ -182,7 +182,7 @@ namespace DCI.Controllers
 
         [HttpPost("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
-        public async Task<IActionResult> ApproveCase(string id, [FromBody] ApprovalModel model)
+        public async Task<IActionResult> ApproveACase(string id, [FromBody] ApprovalModel model)
         {
 
             try
@@ -204,7 +204,7 @@ namespace DCI.Controllers
 
         [HttpPost("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
-        public async Task<IActionResult> RejectCase(string id, [FromBody] ApprovalModel model)
+        public async Task<IActionResult> RejectACase(string id, [FromBody] ApprovalModel model)
         {
 
             try

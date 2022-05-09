@@ -140,7 +140,7 @@ namespace DCI.Entities.DataAccess
 
             });
 
-            var violenceId = new Guid().ToString();
+            var violenceId = new Guid("5E31DB4E-6E79-437E-4C9E-08D666BE7D9E").ToString();
             builder.Entity<ViolenceType>().HasData(new ViolenceType
             {
                 Id = violenceId,
@@ -192,7 +192,8 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciAdmin@2022"),
                 UserType = UserTypes.Admin,
                 IsAdmin = true,
-                State = "Lagos"
+                State = "Lagos",
+                Activated = true
             });
 
             builder.Entity<DCIUser>().HasData(new DCIUser
@@ -208,7 +209,8 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciCso@2022"),
                 UserType=UserTypes.CSO,
                 IsCSO = true,
-                State="Lagos"
+                State="Lagos",
+                Activated=true
             });
 
             builder.Entity<DCIUser>().HasData(new DCIUser
@@ -224,7 +226,8 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciCso@2022"),
                 UserType = UserTypes.CSO,
                 IsCSO = true,
-                State="Ogun"
+                State="Ogun",
+                Activated = true
             });
 
             builder.Entity<DCIUser>().HasData(new DCIUser
@@ -240,7 +243,8 @@ namespace DCI.Entities.DataAccess
                 PasswordHash = hasher.HashPassword(null, "DciSupervisor@2022"),
                 UserType = UserTypes.Supervisor,
                 IsSupervisor = true,
-                State = "Lagos"
+                State = "Lagos",
+                Activated = true
             });
             
             builder.Entity<IdentityUserRole<string>>().HasData(
@@ -255,11 +259,17 @@ namespace DCI.Entities.DataAccess
                 RoleId = SupervisorRoleId,
                 UserId = AdminDCIUserId,
             });
-                        builder.Entity<IdentityUserRole<string>>().HasData(
+            builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>
             {
                 RoleId = CSORoleId,
                 UserId = AdminDCIUserId,
+            });
+            builder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>
+            {
+                RoleId = CSORoleId,
+                UserId = SupervisorDCIUserId,
             });
 
             builder.Entity<IdentityUserRole<string>>().HasData(

@@ -23,7 +23,7 @@ namespace DCI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiResponse<PaginatedList<CaseVMAll>>), 200)]
-        public async Task<IActionResult> GetAllPaginatedForSupervisor([FromQuery] BaseSearchViewModel model)
+        public async Task<IActionResult> GetAllCasesForASupervisor([FromQuery] BaseSearchViewModel model)
         {
 
             try
@@ -31,7 +31,7 @@ namespace DCI.Controllers
                 var result = await _caseService.GetAllPaginatedForSupervisor(model, UserId);
 
                 if (!result.HasError)
-                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK, result.Data.TotalCount);
 
                 return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
             }
@@ -45,7 +45,7 @@ namespace DCI.Controllers
 
         [HttpPost("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
-        public async Task<IActionResult> ApproveCase(string id, [FromBody] ApprovalModel model)
+        public async Task<IActionResult> ApproveACase(string id, [FromBody] ApprovalModel model)
         {
 
             try
@@ -67,7 +67,7 @@ namespace DCI.Controllers
 
         [HttpPost("{id}")]
         [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
-        public async Task<IActionResult> RejectCase(string id, [FromBody] ApprovalModel model)
+        public async Task<IActionResult> RejectACase(string id, [FromBody] ApprovalModel model)
         {
 
             try
