@@ -249,7 +249,7 @@ namespace DCI.Services
             catch (Exception ex)
             {
                // _log.LogError("{0}--------at {1}()", ex.Message ?? ex.InnerException.Message, nameof(UpdateUserLastLogin));
-                result.AddError("An error occured!");
+                result.AddError(ex.Message);
                 return result;
             }
         }
@@ -451,7 +451,7 @@ namespace DCI.Services
             }
             catch (Exception ex)
             {
-                result.AddError("An error occured!");
+                result.AddError(ex.Message);
                 return result;
             }
         }
@@ -514,7 +514,7 @@ namespace DCI.Services
             catch (Exception ex)
             {
                 //_log.LogError("{0}--------at {1}()", ex.Message ?? ex.InnerException.Message, nameof(ResetPassword));
-                resultModel.AddError("An error occured!");
+                resultModel.AddError(ex.Message);
                 return resultModel;
             }
         }
