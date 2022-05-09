@@ -23,7 +23,7 @@ namespace DCI.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ApiResponse<PaginatedList<CaseVMAll>>), 200)]
-        public async Task<IActionResult> GetAllPaginated([FromQuery] BaseSearchViewModel model)
+        public async Task<IActionResult> GetAllApprovedCasesPaginated([FromQuery] BaseSearchViewModel model)
         {
 
             try

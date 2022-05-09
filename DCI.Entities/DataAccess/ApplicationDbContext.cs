@@ -249,6 +249,18 @@ namespace DCI.Entities.DataAccess
                 RoleId = AdminRoleId,
                 UserId = AdminDCIUserId,
             });
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>
+            {
+                RoleId = SupervisorRoleId,
+                UserId = AdminDCIUserId,
+            });
+                        builder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>
+            {
+                RoleId = CSORoleId,
+                UserId = AdminDCIUserId,
+            });
 
             builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>

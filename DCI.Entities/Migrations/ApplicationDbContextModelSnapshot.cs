@@ -115,70 +115,70 @@ namespace DCI.Entities.Migrations
                         {
                             Id = "5e319b4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 390, DateTimeKind.Utc).AddTicks(6930),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 461, DateTimeKind.Utc).AddTicks(6581),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-487e-4c9e-08d9b6be7c9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(807),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(510),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-487e-4c9e-08d9b6be7d9a",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1006),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(768),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e21db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1052),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(819),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "4e31db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1093),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(861),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6a79-487e-4c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1139),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(926),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-487e-4c9a-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1178),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(967),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-487e-5c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1217),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(1006),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-487e-4c9e-18d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1264),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(1143),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = "5e31db4e-6e79-437e-4c9e-08d9b6be7d9e",
                             ActionDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(1307),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(1199),
                             LastDateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -253,7 +253,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e319b4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(456),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 502, DateTimeKind.Utc).AddTicks(6397),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -270,7 +270,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-487e-4c9e-08d9b6be7c9e",
                             ApprovalStatus = 4,
                             CSOUserId = "eeae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(7808),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(641),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -287,7 +287,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-487e-4c9e-08d9b6be7d9a",
                             ApprovalStatus = 4,
                             CSOUserId = "eeae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8157),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(828),
                             IsDeleted = false,
                             IsFatal = false,
                             IsPerpetratorArrested = false,
@@ -304,7 +304,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e21db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8252),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(897),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = true,
@@ -321,7 +321,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "4e31db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8342),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1008),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -338,7 +338,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6a79-487e-4c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8441),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1072),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -355,7 +355,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-487e-4c9a-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8525),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1119),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -372,7 +372,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-487e-5c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8608),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1167),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -389,7 +389,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-487e-4c9e-18d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8695),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1214),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -406,7 +406,7 @@ namespace DCI.Entities.Migrations
                             ApprovalActionId = "5e31db4e-6e79-437e-4c9e-08d9b6be7d9e",
                             ApprovalStatus = 4,
                             CSOUserId = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 429, DateTimeKind.Utc).AddTicks(8792),
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 503, DateTimeKind.Utc).AddTicks(1263),
                             IsDeleted = false,
                             IsFatal = true,
                             IsPerpetratorArrested = false,
@@ -540,8 +540,8 @@ namespace DCI.Entities.Migrations
                             Id = "b8633e2d-a33b-45e6-8329-1958b3252bbd",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "2130512f-aa8e-47ab-ab8c-26711b8e84d7",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 392, DateTimeKind.Utc).AddTicks(9926),
+                            ConcurrencyStamp = "dca8dc13-c492-458d-a17f-dfb62840e6de",
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 463, DateTimeKind.Utc).AddTicks(9380),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Admin@dci.com",
                             EmailConfirmed = true,
@@ -556,9 +556,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Admin@dci.com",
                             NormalizedUserName = "Admin@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3wyQDUPuxzDYReJJ1D5ua1ykL5Nc9fjvi/eLTrR5lwgF1MYPkpGaKIoO+9crg26Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED3D5dUaE+Z6DZXcTWbz19Irgh4ipNDw4gwby7WMXbwlNi4wcPezSHAPeK5/W3h0Fg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6629769b-11d1-40bf-bb64-748c47aced79",
+                            SecurityStamp = "bcc30d81-b82f-4369-8dd7-bc95cc4d1e1b",
                             State = "Lagos",
                             TwoFactorEnabled = false,
                             UserName = "Admin@dci.com",
@@ -569,8 +569,8 @@ namespace DCI.Entities.Migrations
                             Id = "cdae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "e45ca32d-4082-4995-bb13-d0e4e99c6c0b",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 404, DateTimeKind.Utc).AddTicks(869),
+                            ConcurrencyStamp = "9fcb3b00-9484-4c84-b06f-cdd6e51e3c9d",
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 475, DateTimeKind.Utc).AddTicks(552),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "CSO@dci.com",
                             EmailConfirmed = true,
@@ -585,9 +585,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CSO@dci.com",
                             NormalizedUserName = "CSO@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIYeIZR4ThvNtDtD6jNwPnFMdv+162JwFg6SkcLikq1O4JrG8xXTR3DeOIcdoeeWbg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ2wjnXSkmMbP18aIP7A7DhXSBQvz03CW60y4NBxUPKITXemGYdx1+fGL8PREqO6VA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "60cdcb4a-5d1c-4139-998d-5c076031f175",
+                            SecurityStamp = "97093800-6bb2-46e6-949a-57864d2ebfe8",
                             State = "Lagos",
                             TwoFactorEnabled = false,
                             UserName = "CSO@dci.com",
@@ -598,8 +598,8 @@ namespace DCI.Entities.Migrations
                             Id = "eeae8cc2-adec-4ab1-4ca0-08d9b6be7d9e",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "2e1aa6f1-80fd-4931-a233-5aa2f3e9eb67",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 413, DateTimeKind.Utc).AddTicks(2380),
+                            ConcurrencyStamp = "249641f9-6667-40eb-92f1-832dd6d2c26a",
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 484, DateTimeKind.Utc).AddTicks(2481),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "CSOSecond@dci.com",
                             EmailConfirmed = true,
@@ -614,9 +614,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CSOSecond@dci.com",
                             NormalizedUserName = "CSOSecond@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBnCBJdOSG5dEHe9PyVlKUt1Tz1uEd6UEh+DIxg0WBGYT6y0yTvxSwFtNOEi+oCbPA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECMiUdiD+yIUMUMbT69HtLCHysTerEgYFT1mUFUlt4zASmaH3U6h1sOnn/7U2clmuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "894a06d7-e964-47e2-8f32-c6b305aaaa5c",
+                            SecurityStamp = "f70d266d-5814-418a-8e45-96edbb110be5",
                             State = "Ogun",
                             TwoFactorEnabled = false,
                             UserName = "CSOSecond@dci.com",
@@ -627,8 +627,8 @@ namespace DCI.Entities.Migrations
                             Id = "5e31db4e-6e79-487e-4c9e-08d9b6be7d9e",
                             AccessFailedCount = 0,
                             Activated = false,
-                            ConcurrencyStamp = "5174e2b2-e131-47b7-8e5c-39423bef69e8",
-                            CreatedOnUtc = new DateTime(2022, 5, 8, 12, 42, 20, 420, DateTimeKind.Utc).AddTicks(4106),
+                            ConcurrencyStamp = "79767d03-2323-4983-8f42-d319b7c5f6de",
+                            CreatedOnUtc = new DateTime(2022, 5, 8, 21, 39, 26, 492, DateTimeKind.Utc).AddTicks(5634),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Supervisor@dci.com",
                             EmailConfirmed = true,
@@ -643,9 +643,9 @@ namespace DCI.Entities.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Supervisor@dci.com",
                             NormalizedUserName = "Supervisor@dci.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJtxilVfmIjbC2dpXHbl4k+5Fpin6C8XG/Xsr5Ro6QNrrMXa3B9Y3PrZoepiUKV95Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBPd2Fikc3U13m4Y+LJwxwNmbNZGY6937d2zN004ZXupWQIjn7uBTyNH/jy2D4CzqQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "957f3280-df12-4c14-95b7-ff94e8205ded",
+                            SecurityStamp = "cf20fc5e-d5d3-4f4d-81af-efd3395ec049",
                             State = "Lagos",
                             TwoFactorEnabled = false,
                             UserName = "Supervisor@dci.com",
@@ -683,21 +683,21 @@ namespace DCI.Entities.Migrations
                         new
                         {
                             Id = "2c5e174e-3b0e-446f-86af-483d56fd7210",
-                            ConcurrencyStamp = "66b52c75-28c3-44b9-80eb-92d7182a26d3",
+                            ConcurrencyStamp = "54a281f5-230c-407d-acbc-442796a58e89",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "fe8d7501-6cb1-4d99-4c9f-08d9b6be7d9e",
-                            ConcurrencyStamp = "90986b14-995c-42c6-b4b9-b1cee65e27db",
+                            ConcurrencyStamp = "be07866f-c63a-46d8-9dbb-354048279aa1",
                             Name = "SUPERVISOR",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
                             Id = "e82fe09a-2419-4b9b-8a2c-b5001e71c997",
-                            ConcurrencyStamp = "ffc1d4da-c27d-44d3-ac8a-981e41f00067",
+                            ConcurrencyStamp = "23818d71-cc79-4910-86c7-3ffbe96f95af",
                             Name = "CSO",
                             NormalizedName = "CSO"
                         });

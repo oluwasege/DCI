@@ -65,5 +65,27 @@ namespace DCI.Controllers
             }
         }
 
+        [HttpPost]
+        [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+        public async Task<IActionResult> ConfirmEmailAndChangePasswordAsync([FromBody] ChangePasswordVM model)
+        {
+
+            try
+            {
+                var result = await _authService.ChangePasswordAsync(model, CurrentDateTime);
+
+                if (!result.HasError)
+                    return ApiResponse(result.Data, message: result.Message, ApiResponseCodes.OK);
+
+                return ApiResponse<bool>(false, message: result.Message, ApiResponseCodes.FAILED, errors: result.GetErrorMessages().ToArray());
+            }
+            catch (Exception ex)
+            {
+                // _log.LogInformation(ex.InnerException, ex.Message);
+
+                return HandleError(ex);
+            }
+        }
+
     }
 }

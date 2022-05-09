@@ -52,7 +52,7 @@ namespace DCI.Services
 
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    //var response = await _userManager.IsEmailConfirmedAsync(user);
+                    var response = await _userManager.IsEmailConfirmedAsync(user);
 
                     //if (response == false)
                     //{
@@ -61,11 +61,15 @@ namespace DCI.Services
                     //    resultModel.AddError("Email not confirmed!");
                     //    return resultModel;
                     //}
-
+                    if(user.Activated==false||response==false)
+                    {
+                        resultModel.AddError("You have to confirm your email and change your password");
+                        return resultModel;
+                    }
                     var userRoles = await _userManager.GetRolesAsync(user);
                     var (token, expiration) = CreateJwtTokenAsync(user, userRoles);
 
-                    await UpdateUserLastLogin(user.Email, currentDate);
+                    await UpdateUserLastLogin(user.Email, currentDate,false);
 
                     var data = new LoginResponseVM()
                     {
@@ -116,6 +120,46 @@ namespace DCI.Services
             {
 
                 throw;
+            }
+        }
+        public async Task<ResultModel<bool>> ChangePasswordAsync(ChangePasswordVM model, DateTime currentDate)
+        {
+            var resultModel = new ResultModel<bool>();
+
+            try
+            {
+                var user = await GetUser(model.EmailAddress);
+                if (user == null)
+                {
+                    resultModel.AddError(ErrorConstants.IncorrectUserOrPass);
+                    return resultModel;
+                }
+                if (user.Activated == true)
+                {
+                    resultModel.AddError("Account already activated");
+                    return resultModel;
+                }
+                if (user != null && await _userManager.CheckPasswordAsync(user, model.OldPassword))
+                {
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    var (token, expiration) = CreateJwtTokenAsync(user, userRoles);
+                    var activateAccount = await _userManager.ConfirmEmailAsync(user, token);
+                    if (activateAccount.Succeeded == false)
+                    {
+                        resultModel.AddError("Email not confirmed!");
+                        return resultModel;
+                    }
+                    await UpdateUserLastLogin(user.Email, currentDate, true);
+                   
+                }
+                resultModel.Data = true;
+                resultModel.Message = "Email confirmed and password changed";
+                return resultModel;
+            }
+            catch (Exception ex)
+            {
+                resultModel.AddError(ex.Message);
+                return resultModel;
             }
         }
 
@@ -171,7 +215,7 @@ namespace DCI.Services
                 Created = date
             };
         }
-        private async Task<ResultModel<bool>> UpdateUserLastLogin(string emailAddress, DateTime CurrentDate)
+        private async Task<ResultModel<bool>> UpdateUserLastLogin(string emailAddress, DateTime CurrentDate,bool activated)
         {
             var result = new ResultModel<bool>();
             try
@@ -185,7 +229,8 @@ namespace DCI.Services
                     return result;
                 };
 
-
+                if (activated == true)
+                    user.Activated = true;
                 user.LastLoginDate = CurrentDate;
                 await _context.SaveChangesAsync();
 
